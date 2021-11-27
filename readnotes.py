@@ -1,35 +1,17 @@
-import re
-import os
-import argparse
-import sys
-import errno
+import binascii
 import optparse
+import os
 import sqlite3
-import uuid
-
-import email
-import email.utils
-from email.message import EmailMessage
-from email.parser import BytesParser, Parser
-from email.policy import default
-
-from bs4 import BeautifulSoup
-
+import sys
+import zlib
 from datetime import datetime
 from datetime import timedelta
 
-import hashlib
-
-import zlib
-import binascii
-
-import notesdb
-import common
-
-import urllib
 from biplist import *
 
-from notes2html import ReadAttachments, ProcessNoteBodyBlob, DefaultCss, PrintAttachments
+import common
+import notesdb
+from notes2html import ReadAttachments, ProcessNoteBodyBlob, DefaultCss
 
 '''
    Copyright (c) 2017 Yogesh Khatri 
@@ -236,6 +218,12 @@ def ReadNotesHighSierra(db, source, user, css, attachments, odb, blob_path):
         except KeyError:
           _log_warning('Could not find version number; only processing text ' + data.hex())
           text_content = ProcessBasicNoteBodyBlob(data)
+
+        if type(text_content) is bytes:
+            text_content = text_content.decode('utf-8')
+
+        text_content = common.html_to_markdown(text_content)
+
         columns = {}
         columns["apple_id"] = row['note_id']
         columns["apple_title"] = row['title']
