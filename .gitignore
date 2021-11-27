@@ -119,3 +119,5 @@ dmypy.json
 NoteStore.sqlite
 log
 notes_macos
+NoteStore.sqlite-shm
+NoteStore.sqlite-wal
