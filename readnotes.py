@@ -185,7 +185,7 @@ def ReadNotesHighSierra(db, source, user, css, attachments, odb, blob_path):
             " c3.ZFILESIZE, "\
             " c4.ZFILENAME, c4.ZIDENTIFIER as att_uuid,  "\
             " c1.ZTITLE1 as title, c1.ZSNIPPET as snippet, c1.ZIDENTIFIER as noteID, "\
-            " c1.ZCREATIONDATE1 as created, c1.ZLASTVIEWEDMODIFICATIONDATE, c1.ZMODIFICATIONDATE1 as modified, "\
+            " c1.ZCREATIONDATE3 as created, c1.ZLASTVIEWEDMODIFICATIONDATE, c1.ZMODIFICATIONDATE1 as modified, "\
             " c2.ZACCOUNT3, c2.ZTITLE2 as folderName, c2.ZIDENTIFIER as folderID, "\
             " c5.ZNAME as acc_name, c5.ZIDENTIFIER as acc_identifier, c5.ZACCOUNTTYPE "\
             " FROM ZICNOTEDATA as n "\
